@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Te AMO, Lyndel Perez ❤️</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('amor.jpeg') no-repeat center center/cover;
+            text-align: center;
+            color: white;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            width: 100%;
+        }
+        h1 {
+            font-size: 3em;
+            animation: fadeIn 2s ease-in-out;
+        }
+        .message {
+            font-size: 1.5em;
+            max-width: 600px;
+            margin-top: 20px;
+            animation: slideIn 2s ease-in-out;
+        }
+        .hidden {
+            display: none;
+        }
+        .heart-message {
+            font-size: 2em;
+            color: red;
+            margin-top: 20px;
+            font-weight: bold;
+            display: none;
+        }
+        .heart {
+            font-size: 5em;
+            color: red;
+            display: none;
+            animation: heartbeat 1.5s infinite;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .button {
+            background-color: white;
+            color: #c675ff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+        .button:hover {
+            background-color: #ffdbdb;
+        }
+        .heart-fall {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            color: red;
+            font-size: 2em;
+            animation: fall 3s linear infinite;
+        }
+        @keyframes fall {
+            from { transform: translateY(-10px); opacity: 1; }
+            to { transform: translateY(100vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Te Amo, Lyndel Perez ❤️</h1>
+        <p class="message">Te elegí a ti porque cada momento a tu lado convierte lo ordinario en extraordinario.</p>
+        <button class="button" onclick="prevMessage()">⬅ Anterior</button>
+        <button class="button" onclick="nextMessage()">Siguiente ➡</button>
+        <p class="heart-message hidden"></p>
+        <div class="heart">❤️</div>
+    </div>
+    <script>
+        const messages = [
+            "Te elegí a ti porque cada momento a tu lado convierte lo ordinario en extraordinario.",
+            "Te elegí porque tu risa ilumina mi alma y tu presencia me da paz.",
+            "Te elegí porque nuestro amor es un viaje que quiero recorrer en cada vida que tenga.",
+            "Te elegí porque tus ojos reflejan la bondad y el amor que llenan mi corazón.",
+            "Te elegí porque eres la melodía que mi corazón siempre ha buscado.",
+            "Te elegí porque, sin importar el tiempo ni el lugar, tú eres mi hogar.",
+            "Te elegí porque, con cada abrazo, siento el calor y la seguridad de un amor verdadero."
+        ];
+        
+        let index = 0;
+        function nextMessage() {
+            if (index < messages.length - 1) {
+                index++;
+                document.querySelector('.message').innerHTML = messages[index];
+                launchHearts();
+            } else {
+                document.querySelector('.heart-message').innerHTML = "Lyndel, mi amor por ti es infinito. Gracias por ser la mejor parte de mi vida. ❤️";
+                document.querySelector('.heart-message').style.display = 'block';
+                document.querySelector('.heart').style.display = 'block';
+            }
+        }
+        
+        function prevMessage() {
+            if (index > 0) {
+                index--;
+                document.querySelector('.message').innerHTML = messages[index];
+                launchHearts();
+            }
+        }
+        
+        function launchHearts() {
+            for (let i = 0; i < 50; i++) {
+                let heart = document.createElement('div');
+                heart.classList.add('heart-fall');
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * window.innerWidth + 'px';
+                heart.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 3000);
+            }
+        }
+    </script>
+</body>
+</html>
